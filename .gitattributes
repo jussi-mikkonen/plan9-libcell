@@ -1,0 +1,2 @@
+test/*.script -text
+test/*.golden -text

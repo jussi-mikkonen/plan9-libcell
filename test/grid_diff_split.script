@@ -1,0 +1,6 @@
+size 1 6
+defstyle kw #5f87af #1c1c1c -
+flush
+put 0 0 "ab" default
+put 0 2 "cd" kw
+flush

@@ -1,0 +1,11 @@
+put 2
+put 2
+flush 4
+0 0 4 #d0d0d0 #1c1c1c - "abcd"
+flush 0
+mix 1 5 -> 7
+flush 2
+0 0 2 #5f87af #444444 - "ab"
+flush 2
+0 2 2 #00ff00 #000000 - "cd"
+flush 0

@@ -1,0 +1,11 @@
+size 1 8
+rune 0 0 9 default
+rune 0 1 1b default
+rune 0 2 7f default
+rune 0 3 85 default
+rune 0 4 d800 default
+rune 0 5 110000 default
+rune 0 6 0 default
+rune 0 7 41 default
+cells 0
+dump

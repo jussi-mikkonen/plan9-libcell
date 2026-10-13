@@ -1,0 +1,5 @@
+size 2 4
+put 0 0 "abcd" default
+put 1 1 "xy" default
+clear
+dump

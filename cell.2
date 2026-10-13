@@ -1,0 +1,354 @@
+.TH CELL 2
+.SH NAME
+cellopen, cellclose, cellsize, cellpixsize, cellresize, cellscroll, cellinvalidate, cellstyle, cellput, cellputs, cellwidth, cellpoint, cellfill, cellclear, cellloadthemestr, cellloadtheme, cellsetstyle, cellmix, cellflush \- cell grid of styled text drawn with libdraw
+.SH SYNOPSIS
+.EX
+#include <u.h>
+#include <libc.h>
+#include <draw.h>
+#include <cell.h>
+.sp 0.3v
+typedef struct Cell Cell;
+.sp 0.3v
+Cell*	cellopen(Font*)
+void	cellclose(Cell*)
+void	cellsize(Cell*, int *rows, int *cols)
+void	cellpixsize(Cell*, int *w, int *h)
+int	cellresize(Cell*)
+void	cellscroll(Cell*, int row, int nrows, int n)
+void	cellinvalidate(Cell*)
+int	cellstyle(Cell*, char *name)
+int	cellput(Cell*, int row, int col, Rune, int style)
+int	cellputs(Cell*, int row, int col, char *utf8, int style)
+int	cellwidth(Cell*, Rune)
+int	cellpoint(Cell*, Point, int *row, int *col)
+void	cellfill(Cell*, int row, int col, int nrows, int ncols,
+		Rune, int style)
+void	cellclear(Cell*)
+int	cellloadthemestr(Cell*, char *text)
+int	cellloadtheme(Cell*, char *path)
+int	cellsetstyle(Cell*, char *name, ulong rgbfg, ulong rgbbg,
+		int attr)
+int	cellmix(Cell*, int a, int b)
+int	cellflush(Cell*)
+.sp 0.3v
+enum { Cdefault = 0 };
+enum { Cunderline = 1, Creverse = 2 };
+.EE
+.SH DESCRIPTION
+.I Libcell
+keeps a grid of
+.I rows
+by
+.I cols
+character cells, each holding a rune and a style, and draws it into the
+current window of a
+.IR libdraw (2)
+program.
+Only the cells that changed since the last flush are redrawn.
+It uses no terminal and no escape sequences.
+It starts no processes, reads no mouse or keyboard, and uses no global state;
+the caller owns the event loop.
+.PP
+.I Cellopen
+creates a grid that fills
+.BR screen ,
+using the given
+.IR Font ,
+which the caller keeps and must keep valid until
+.IR cellclose .
+It measures the width of an ASCII character; that width and
+.B font->height
+are the size of every cell.
+A proportional font is refused:
+.I cellopen
+returns nil and the error string names the differing widths.
+.I Cellclose
+frees the grid and every image it allocated.
+.SS Sizes
+.I Cellsize
+stores the number of rows and columns in
+.I *rows
+and
+.IR *cols .
+They are 0 when the window is smaller than one cell.
+.I Cellpixsize
+stores the pixel width and height of one cell.
+Rows and columns are numbered from 0 at the top left.
+.SS Styles and themes
+A style is a small integer id naming a foreground colour, a background colour
+and the attributes underline and reverse.
+Ids are passed to the functions that put text.
+.PP
+The built-in theme defines seven styles, with ids 0 to 6:
+.BR default ,
+.BR keyword ,
+.BR comment ,
+.BR string ,
+.BR error ,
+.BR selection
+and
+.BR cursor .
+.B Default
+has id
+.BR Cdefault .
+.I Cellstyle
+returns the id of the named style, or
+.B Cdefault
+if there is none.
+.PP
+.I Cellsetstyle
+defines a style at run time with colours
+.B 0xRRGGBB
+and
+.I attr
+made of
+.B Cunderline
+and
+.BR Creverse ,
+and returns its id.
+Redefining an existing name changes it in place and keeps its id.
+It returns \-1 and sets the error string if the table is full or an argument is bad.
+.PP
+.I Cellmix
+returns the id of a style made from
+.I a
+with every field that
+.I b
+sets overriding it.
+Asking again for the same pair gives the same id (the result is cached).
+If
+.I b
+is
+.B Cdefault
+or
+.I a
+equals
+.IR b ,
+the result is
+.IR a .
+It returns \-1 and sets the error string for a bad id or when the table is full.
+.PP
+.I Cellloadthemestr
+and
+.I cellloadtheme
+read a theme from a string or from a file (at most 64 kilobytes).
+Entries are merged by name over the current styles, built-in ones first,
+so a theme that names only
+.B keyword
+changes only that style.
+A named style is replaced wholesale.
+Each line has the form
+.IP
+.EX
+name key=value ... flag ...
+.EE
+.PP
+where
+.I name
+is the style name, the keys are
+.B fg=#rrggbb
+and
+.B bg=#rrggbb
+(six hex digits), and the flags are
+.B underline
+and
+.BR reverse .
+Fields are separated by blanks.
+Lines that are empty or begin with
+.B #
+are comments.
+A colour left unset follows the
+.B default
+style; no attribute is set except those listed.
+For example:
+.IP
+.EX
+# comment
+default   fg=#e0e0e0 bg=#101040
+keyword   fg=#ffaf00
+error     fg=#ff0000 underline
+.EE
+.PP
+The load is all or nothing.
+On a bad line the functions return \-1, change nothing, and set the error
+string to
+.BI theme: LINE : " message"
+(a file that cannot be read or is too large gives the usual error instead).
+They return 0 on success.
+.SS Putting text
+.I Cellput
+stores one rune at a cell and returns the number of cells stored:
+0 if the position is outside the grid, 1 or 2 otherwise.
+.I Cellputs
+stores a UTF-8 string from the given position, without wrapping;
+text past the right edge is clipped.
+It returns the number of cells stored.
+.I Cellfill
+stores the same rune and style in the rectangle of
+.I nrows
+by
+.I ncols
+cells, clipped to the grid.
+.I Cellclear
+sets every cell to a space in the
+.B default
+style.
+Nothing is drawn until
+.IR cellflush .
+.PP
+Width rules.
+Each rune is stored as a span of whole cells.
+The span is the measured width of the rune in the font in pixels divided by the
+cell width, rounded up; it is measured once per rune and remembered.
+Control characters and rune 0 are stored as a space.
+A rune with no glyph width, or wider than two cells, is stored as U+FFFD.
+A wide rune occupies two cells; overwriting either half of it turns
+the other half into a space.
+A wide rune that does not fit at the last column is stored as a space.
+If a glyph is narrower than its cells, the rest is painted with the background.
+.PP
+.I Cellwidth
+returns the number of cells
+.I cellput
+would store for the rune: 1 or 2, by the rules above, so a caller can lay out
+text exactly as it will be drawn.
+Only the clip cases differ: outside the grid nothing is stored, and a wide
+rune at the last column is stored as one space.
+It returns 0 for a nil
+.IR Cell .
+.SS Drawing
+.I Cellflush
+compares the grid with what it drew last and redraws only the cells that
+differ, as runs of equal style, one drawing request per run, and then calls
+.I flushimage
+once.
+It returns the number of cells redrawn (a wide rune counts 2), or \-1.
+The margins left over when the window is not a whole number of cells are
+painted with the background of
+.BR default .
+.SS Window changes
+After every resize or move of the window the caller must call
+.IR getwindow (2)
+and then
+.IR cellresize ,
+and then refill the grid as needed and call
+.IR cellflush .
+.I Cellresize
+re-reads the window rectangle and resizes the grid;
+the next flush redraws everything.
+It returns 0, or \-1 and sets the error string if the window is gone
+(the grid is then kept as it was, and drawing does nothing).
+A window smaller than one cell gives a grid of 0 rows or 0 columns,
+on which all functions are harmless; a later resize brings the grid back.
+.PP
+.I Cellinvalidate
+makes the next
+.I cellflush
+redraw every cell and the margins, for example after something else drew on the window.
+.SS Mouse
+.I Cellpoint
+maps a point in screen coordinates, as delivered in
+.B Mouse.xy
+(see
+.IR mouse (2)),
+to the cell under it, stored in
+.I *row
+and
+.IR *col .
+It returns 1 if the point is inside the grid and 0 if it is in the margin
+or outside the window; in that case
+.I *row
+and
+.I *col
+are clamped to the nearest cell.
+A point in the right half of a wide rune gives that cell's own column;
+the caller maps it to the rune.
+With no window
+.RI ( screen
+is nil) or an empty grid it sets both to 0 and returns 0.
+.SS Scrolling
+.I Cellscroll
+moves the
+.I nrows
+rows starting at
+.I row
+by
+.I n
+rows, up if
+.I n
+is positive and down if negative, in the grid and on the screen with a single
+drawing request.
+The rows uncovered by the move become spaces in the
+.B default
+style; the caller puts the new text there before the next flush.
+Rows moved by scrolling are not redrawn by
+.IR cellflush .
+.SH EXAMPLES
+Open the grid, then redraw after a resize:
+.IP
+.EX
+void
+eresized(int new)
+{
+	if(new && getwindow(display, Refnone) < 0)
+		sysfatal("getwindow: %r");
+	if(cellresize(cell) < 0)
+		fprint(2, "cellresize: %r\en");
+	redraw();	/* cellput and cellputs calls */
+	if(cellflush(cell) < 0)
+		fprint(2, "cellflush: %r\en");
+}
+
+void
+main(void)
+{
+	Font *f;
+	int kw;
+
+	initdraw(nil, nil, "demo");
+	f = openfont(display, "/lib/font/bit/vga/unicode.font");
+	cell = cellopen(f);
+	if(cell == nil)
+		sysfatal("cellopen: %r");
+	kw = cellstyle(cell, "keyword");
+	cellputs(cell, 0, 0, "hello, 世界", kw);
+	cellflush(cell);
+	/* event loop calling eresized(1) on resize */
+}
+.EE
+.PP
+Scroll the text of a window up one line and fill the new last line:
+.IP
+.EX
+cellsize(cell, &rows, &cols);
+cellscroll(cell, 0, rows, 1);
+cellputs(cell, rows-1, 0, newline, Cdefault);
+cellflush(cell);
+.EE
+.SH SOURCE
+The libcell repository (not part of
+.BR /sys/src ):
+.B cell.h
+and the C files beside it, built with
+.IR mk (1).
+.SH "SEE ALSO"
+.IR graphics (2),
+.IR draw (2),
+.IR allocimage (2),
+.IR font (6)
+.SH DIAGNOSTICS
+Functions that can fail return \-1 or nil and set the error string, readable
+with
+.BR %r .
+.I Libcell
+never calls
+.IR sysfatal .
+A position outside the grid is not an error: such calls store nothing.
+.SH BUGS
+Fixed-width fonts only.
+There is no bold or italic, and combining marks are not supported: each rune
+takes its own cell or cells.
+Runes the font does not map are drawn as the font's missing-glyph box
+(rune 0 of the font).
+A wide rune whose glyph is not exactly its cells wide is padded with the background.

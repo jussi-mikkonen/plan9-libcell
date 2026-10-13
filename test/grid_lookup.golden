@@ -1,0 +1,3 @@
+lookup default 0
+lookup nosuch 0
+lookup kw 1

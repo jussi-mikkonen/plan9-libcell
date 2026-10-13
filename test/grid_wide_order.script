@@ -1,0 +1,10 @@
+width 3042 16
+size 1 4
+put 0 0 "xy" default
+put 0 0 "あ" default
+flush
+size 1 4
+put 0 0 "あ" default
+put 0 0 "xy" default
+put 0 0 "あ" default
+flush

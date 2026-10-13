@@ -1,0 +1,36 @@
+#!/bin/rc
+# vmcheck.rc: build, test, install and lint libcell on the VM and record the output.
+# Usage: rc tools/vmcheck.rc   (from the repo root, e.g. /mnt/term/.../plan9-libcell)
+# Output: evidence/vmcheck.txt
+
+mkdir -p evidence
+out=evidence/vmcheck.txt
+>$out
+
+fn step {
+	echo '--- step '$"*
+	echo '--- step '$"* >>$out
+}
+
+fn run {
+	step $"*
+	{ eval $*; echo status $status } >[2=1] | tee -a $out
+}
+
+step date
+{ date } >[2=1] | tee -a $out
+
+# name-free check before the first build: failures (file does not exist) are expected
+run ls /sys/include/cell.h /$objtype/lib/libcell.a /sys/man/2/cell
+run mk
+run mk test
+run mk -n install
+run mk install
+run ls -l /sys/include/cell.h /$objtype/lib/libcell.a /sys/man/2/cell
+run cmp cell.h /sys/include/cell.h
+run 'man 2 cell | sed 20q'
+run mk lint
+run 'cd consumer && mk && cd ..'
+run 'cd demo && mk && cd ..'
+
+echo done, evidence in $out

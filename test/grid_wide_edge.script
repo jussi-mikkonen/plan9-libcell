@@ -1,0 +1,12 @@
+width 3042 16
+size 1 4
+rune 0 3 3042 default
+dump
+cells 0
+put 0 3 "あ" default
+dump
+put 0 -1 "あb" default
+dump
+cells 0
+put 0 -2 "あb" default
+dump

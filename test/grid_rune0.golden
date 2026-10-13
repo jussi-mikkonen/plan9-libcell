@@ -1,0 +1,5 @@
+put 3
+rune 1
+0 |a c|
+flush 3
+0 0 3 #d0d0d0 #1c1c1c - "a c"

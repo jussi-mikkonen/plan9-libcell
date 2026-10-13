@@ -1,0 +1,7 @@
+</$objtype/mkfile
+
+TARG=cellhello
+OFILES=cellhello.$O
+BIN=/tmp
+
+</sys/src/cmd/mkone

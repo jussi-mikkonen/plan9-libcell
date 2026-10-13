@@ -1,0 +1,7 @@
+builtin
+mix 5 1
+size 1 1
+put 0 0 "a" @7
+flush
+style keyword fg=#ff0000
+flush

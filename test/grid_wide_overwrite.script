@@ -1,0 +1,18 @@
+width 3042 16
+width 3044 16
+size 1 6
+put 0 0 "aあいb" default
+rune 0 2 78 default
+dump
+cells 0
+put 0 0 "aあいb" default
+rune 0 3 79 default
+dump
+put 0 0 "aあいb" default
+rune 0 2 3044 default
+dump
+cells 0
+put 0 0 "aあいb" default
+rune 0 2 3042 default
+dump
+cells 0

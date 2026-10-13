@@ -1,0 +1,10 @@
+size 1 2
+defstyle kw #5f87af #1c1c1c -
+lookup kw
+put 0 0 "a" kw
+flush
+defstyle kw #ff0000 #000000 u
+lookup kw
+defstyle new #00ff00 #000000 -
+lookup new
+flush

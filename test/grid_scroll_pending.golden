@@ -1,0 +1,16 @@
+put 3
+put 3
+flush 12
+0 0 3 #d0d0d0 #1c1c1c - "aaa"
+1 0 3 #d0d0d0 #1c1c1c - "bbb"
+2 0 3 #d0d0d0 #1c1c1c - "   "
+3 0 3 #d0d0d0 #1c1c1c - "   "
+put 1
+blit 1 0 3
+0 |bbb|
+1 |x  |
+2 |   |
+3 |   |
+flush 4
+1 0 1 #d0d0d0 #1c1c1c - "x"
+3 0 3 #d0d0d0 #1c1c1c - "   "

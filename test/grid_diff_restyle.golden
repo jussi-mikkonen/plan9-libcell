@@ -1,0 +1,6 @@
+put 1
+flush 3
+0 0 3 #d0d0d0 #1c1c1c - "a  "
+put 1
+flush 1
+0 0 1 #1c1c1c #5f87af ur "a"

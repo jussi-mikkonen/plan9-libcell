@@ -1,0 +1,7 @@
+width 3042 12
+width 3044 12
+size 1 6
+put 0 0 "aあb" default
+flush
+put 0 0 "あい" default
+flush

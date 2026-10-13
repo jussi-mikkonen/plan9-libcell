@@ -1,0 +1,5 @@
+# header comment
+
+default fg=#d0d0d0 # trailing note
+   # indented comment
+keyword fg=#5f87af bg=#000000 # note

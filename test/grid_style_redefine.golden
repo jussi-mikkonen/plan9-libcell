@@ -1,0 +1,10 @@
+lookup kw 1
+put 1
+flush 2
+0 0 1 #5f87af #1c1c1c - "a"
+0 1 1 #d0d0d0 #1c1c1c - " "
+lookup kw 1
+lookup new 2
+flush 2
+0 0 1 #ff0000 #000000 u "a"
+0 1 1 #d0d0d0 #1c1c1c - " "

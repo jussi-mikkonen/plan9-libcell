@@ -1,0 +1,9 @@
+put 2
+put 2
+flush 4
+0 0 4 #d0d0d0 #1c1c1c - "あ  "
+put 2
+put 2
+put 2
+flush 4
+0 0 4 #d0d0d0 #1c1c1c - "あ  "

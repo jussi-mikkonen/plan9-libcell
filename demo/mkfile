@@ -1,0 +1,10 @@
+</$objtype/mkfile
+
+TARG=celldemo
+OFILES=celldemo.$O
+BIN=$home/bin/$objtype
+HFILES=/sys/include/cell.h
+
+</sys/src/cmd/mkone
+
+$O.out: /$objtype/lib/libcell.a

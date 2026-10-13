@@ -1,0 +1,5 @@
+size 1 1
+lookup default
+lookup nosuch
+defstyle kw #5f87af #1c1c1c -
+lookup kw

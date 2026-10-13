@@ -1,0 +1,10 @@
+width 3042 16
+size 1 4
+put 0 0 "aあb" default
+flush
+put 0 0 "aあb" default
+flush
+rune 0 2 3042 comment
+flush
+rune 0 1 62 default
+flush

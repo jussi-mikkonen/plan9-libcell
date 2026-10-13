@@ -1,0 +1,4 @@
+ascii 8
+set 69 3
+set 57 12
+check /lib/font/bit/lucsans/unicode.8.font

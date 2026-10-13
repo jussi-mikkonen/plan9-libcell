@@ -1,0 +1,54 @@
+</$objtype/mkfile
+
+# Golden tests, run by mklib's test rule (cd test && mk test).
+# Pure sources live in ..; the Linux harness (make) runs the same goldens.
+CFLAGS=$CFLAGS -DPLAN9 -I..
+HFILES=../compat.h ../cellcore.h script.h
+
+all:V: $O.gridtest $O.themetest $O.widthtest
+
+$O.gridtest: gridtest.$O style.$O grid.$O diff.$O theme.$O wtab.$O eaw.$O
+	$LD -o $target $prereq
+
+$O.themetest: themetest.$O style.$O theme.$O grid.$O diff.$O wtab.$O
+	$LD -o $target $prereq
+
+$O.widthtest: widthtest.$O width.$O
+	$LD -o $target $prereq
+
+%.$O: $HFILES
+
+%.$O: ../%.c
+	$CC $CFLAGS -o $target ../$stem.c
+
+%.$O: %.c
+	$CC $CFLAGS -o $target $stem.c
+
+test:V: all
+	fail=0
+	fn t {
+		for(s in $2^_*.script){
+			n=`{basename $s .script}
+			./$O.$1 <$s >/tmp/libcell.test.out >[2=1]
+			if(cmp -s $n.golden /tmp/libcell.test.out)
+				echo PASS $n
+			if not {
+				echo FAIL $n
+				fail=1
+			}
+		}
+	}
+	t gridtest grid
+	t themetest theme
+	t widthtest width
+	if(grep -s '#include[	 ]*<' ../style.c ../grid.c ../diff.c ../theme.c ../width.c ../wtab.c ../eaw.c ../cellcore.h){
+		echo FAIL purity
+		fail=1
+	}
+	rm -f /tmp/libcell.test.out
+	if(~ $fail 1)
+		exit fail
+	exit ''
+
+clean:V:
+	rm -f *.[05678qv] [05678qv].gridtest [05678qv].themetest [05678qv].widthtest

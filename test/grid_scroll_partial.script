@@ -1,0 +1,9 @@
+size 4 3
+put 0 0 "aaa" default
+put 1 0 "bbb" default
+put 2 0 "ccc" default
+put 3 0 "ddd" default
+flush
+scroll 0 3 1
+dump
+flush

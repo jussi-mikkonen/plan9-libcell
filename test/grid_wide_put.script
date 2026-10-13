@@ -1,0 +1,6 @@
+width 3042 16
+width 3044 16
+size 1 6
+put 0 0 "aあいb" default
+cells 0
+dump

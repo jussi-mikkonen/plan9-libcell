@@ -1,0 +1,27 @@
+width eaw
+width 3042 16
+size 1 4
+span 41
+rune 0 0 41 default
+cells 0
+span 7
+rune 0 0 7 default
+cells 0
+span 7f
+rune 0 0 7f default
+cells 0
+span 85
+rune 0 0 85 default
+cells 0
+span 3042
+rune 0 0 3042 default
+cells 0
+span d800
+rune 0 0 d800 default
+cells 0
+span 110000
+rune 0 0 110000 default
+cells 0
+span fffd
+rune 0 0 fffd default
+cells 0

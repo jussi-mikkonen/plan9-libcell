@@ -1,0 +1,13 @@
+width eaw
+width 3042 8
+span 3042
+eaw 3042
+width ff61 16
+span ff61
+eaw ff61
+size 1 4
+put 0 0 "あ" default
+cells 0
+width cw
+span 3042
+span ff61

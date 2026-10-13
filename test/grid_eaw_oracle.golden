@@ -1,0 +1,30 @@
+eaw 0041 1
+eaw 00e9 1
+eaw 00a0 1
+eaw 0300 1
+eaw 2500 1
+eaw ff61 1
+eaw fffd 1
+eaw 1100 2
+eaw 3000 2
+eaw 3042 2
+eaw 4e00 2
+eaw ac00 2
+eaw ff21 2
+eaw 1f600 2
+eaw 20000 2
+span 0041 -> 0041 1 pad=0
+span 00e9 -> 00e9 1 pad=0
+span 00a0 -> 00a0 1 pad=0
+span 0300 -> 0300 1 pad=0
+span 2500 -> 2500 1 pad=0
+span ff61 -> ff61 1 pad=0
+span fffd -> fffd 1 pad=0
+span 1100 -> 1100 2 pad=0
+span 3000 -> 3000 2 pad=0
+span 3042 -> 3042 2 pad=0
+span 4e00 -> 4e00 2 pad=0
+span ac00 -> ac00 2 pad=0
+span ff21 -> ff21 2 pad=0
+span 1f600 -> 1f600 2 pad=0
+span 20000 -> 20000 2 pad=0

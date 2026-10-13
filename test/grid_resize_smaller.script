@@ -1,0 +1,6 @@
+size 3 5
+put 0 0 "abcde" default
+put 1 0 "fghij" default
+put 2 0 "klmno" default
+resize 2 3
+dump

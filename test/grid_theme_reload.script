@@ -1,0 +1,7 @@
+size 1 4
+style keyword fg=#5f87af
+put 0 0 "ab" keyword
+flush
+flush
+style keyword fg=#ff0000
+flush

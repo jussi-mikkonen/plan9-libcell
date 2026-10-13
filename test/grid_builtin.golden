@@ -1,0 +1,7 @@
+lookup keyword 1
+lookup cursor 6
+put 1
+put 1
+flush 2
+0 0 1 #5f87af #1c1c1c - "k"
+0 1 1 #87af5f #1c1c1c - "s"

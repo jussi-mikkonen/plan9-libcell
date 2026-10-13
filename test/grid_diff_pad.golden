@@ -1,0 +1,9 @@
+put 4
+flush 6
+0 0 1 #d0d0d0 #1c1c1c - "a"
+0 1 2 #d0d0d0 #1c1c1c - "あ" pad=4
+0 3 3 #d0d0d0 #1c1c1c - "b  "
+put 4
+flush 4
+0 0 2 #d0d0d0 #1c1c1c - "あ" pad=4
+0 2 2 #d0d0d0 #1c1c1c - "い" pad=4

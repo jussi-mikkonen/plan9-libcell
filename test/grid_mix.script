@@ -1,0 +1,9 @@
+builtin
+mix 5 1
+mix 1 5
+mix 5 1
+styles
+size 1 2
+put 0 0 "a" @7
+put 0 1 "b" @8
+flush

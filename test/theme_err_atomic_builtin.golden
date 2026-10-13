@@ -1,0 +1,16 @@
+0 default fg=#d0d0d0 bg=#1c1c1c -
+1 keyword fg=#5f87af bg=#1c1c1c -
+2 comment fg=#808080 bg=#1c1c1c -
+3 string fg=#87af5f bg=#1c1c1c -
+4 error fg=#ff5f5f bg=#1c1c1c u
+5 selection fg=#d0d0d0 bg=#444444 -
+6 cursor fg=#d0d0d0 bg=#1c1c1c r
+@@
+error theme:2: unknown key 'fgg'
+0 default fg=#d0d0d0 bg=#1c1c1c -
+1 keyword fg=#5f87af bg=#1c1c1c -
+2 comment fg=#808080 bg=#1c1c1c -
+3 string fg=#87af5f bg=#1c1c1c -
+4 error fg=#ff5f5f bg=#1c1c1c u
+5 selection fg=#d0d0d0 bg=#444444 -
+6 cursor fg=#d0d0d0 bg=#1c1c1c r

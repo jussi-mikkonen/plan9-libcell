@@ -1,0 +1,8 @@
+put 2
+flush 4
+0 0 2 #5f87af #1c1c1c - "ab"
+0 2 2 #d0d0d0 #1c1c1c - "  "
+error theme:1: unknown key 'fgg'
+0 default fg=#d0d0d0 bg=#1c1c1c -
+1 keyword fg=#5f87af bg=#1c1c1c -
+flush 0

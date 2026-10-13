@@ -1,0 +1,8 @@
+put 1
+put 1
+put 1
+flush 4
+0 0 1 #1c1c1c #5f87af r "a"
+0 1 1 #000000 #ff5f5f ur "b"
+0 2 1 #1c1c1c #d0d0d0 r "c"
+0 3 1 #d0d0d0 #1c1c1c - " "

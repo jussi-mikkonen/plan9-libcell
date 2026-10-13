@@ -1,0 +1,5 @@
+default underline
+keyword fg=#5f87af
+error fg=#ff5f5f underline
+@@
+error fg=#ff0000

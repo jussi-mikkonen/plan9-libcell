@@ -1,0 +1,6 @@
+put 3
+error grid too large
+0 |abc|
+flush 0
+put 0
+0 |  |

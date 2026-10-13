@@ -1,0 +1,7 @@
+size 3 6
+put 0 0 "aÃ¤â‚¬ğŸ˜€" default
+put 1 0 "ÿ" default
+put 1 1 "â‚x" default
+put 2 0 "À€Z" default
+dump
+flush

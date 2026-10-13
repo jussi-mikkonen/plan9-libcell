@@ -1,0 +1,12 @@
+.front-ref/
+*.[0125678vqki]
+!cell.2
+[0125678vqki].out
+*.a[0125678vqki]
+[0125678vqki].gridtest
+[0125678vqki].themetest
+[0125678vqki].widthtest
+test/gridtest
+test/themetest
+test/widthtest
+consumer/[0125678vqki].out

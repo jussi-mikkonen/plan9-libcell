@@ -1,0 +1,7 @@
+size 3 10
+put 3 0 "x" default
+rune -1 0 41 default
+rune 0 10 41 default
+put 0 -2 "abcd" default
+put -1 0 "x" default
+dump

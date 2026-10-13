@@ -1,0 +1,5 @@
+size 1 8
+style keyword fg=#5f87af
+put 0 0 "ab" default
+put 0 2 "cd" keyword
+flush

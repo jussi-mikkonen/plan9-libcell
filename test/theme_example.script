@@ -1,0 +1,7 @@
+default   fg=#d0d0d0 bg=#1c1c1c
+keyword   fg=#5f87af
+comment   fg=#808080
+string    fg=#87af5f
+error     fg=#ff5f5f underline
+selection bg=#444444
+cursor    reverse

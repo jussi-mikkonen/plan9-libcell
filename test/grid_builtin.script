@@ -1,0 +1,7 @@
+builtin
+lookup keyword
+lookup cursor
+size 1 2
+put 0 0 "k" keyword
+put 0 1 "s" string
+flush

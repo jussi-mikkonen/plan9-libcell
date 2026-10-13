@@ -1,0 +1,5 @@
+size 2 3
+flush
+rune 0 0 78 default
+failflush
+flush

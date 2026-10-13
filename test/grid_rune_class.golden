@@ -1,0 +1,18 @@
+span 0000 -> 0020 1 pad=0
+span 0009 -> 0020 1 pad=0
+span 001f -> 0020 1 pad=0
+span 007f -> 0020 1 pad=0
+span 0085 -> 0020 1 pad=0
+span 009f -> 0020 1 pad=0
+span 0041 -> 0041 1 pad=0
+measures 0
+span d800 -> fffd 1 pad=0
+span dfff -> fffd 1 pad=0
+span 110000 -> fffd 1 pad=0
+span 3042 -> 3042 2 pad=0
+span 3044 -> 3044 2 pad=4
+span 00e9 -> 00e9 1 pad=1
+span 0300 -> fffd 1 pad=0
+span 4e00 -> fffd 1 pad=0
+span 0300 -> 0020 1 pad=0
+span 4e00 -> 0020 1 pad=0

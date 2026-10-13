@@ -1,0 +1,4 @@
+size 3 10
+put 1 7 "abcdef" default
+put 2 0 "abcdefghijkl" default
+dump

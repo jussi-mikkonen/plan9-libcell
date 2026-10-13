@@ -1,0 +1,8 @@
+builtin
+size 1 4
+defstyle rv #5f87af #1c1c1c r
+defstyle ul #ff5f5f #000000 ur
+put 0 0 "a" rv
+put 0 1 "b" ul
+put 0 2 "c" cursor
+flush

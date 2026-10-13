@@ -1,0 +1,8 @@
+size 4 4
+width 3042 16
+put 1 0 "あa" default
+flush
+scroll 0 4 -1
+cells 2
+cells 1
+flush

@@ -1,0 +1,7 @@
+size 2 3
+put 0 0 "abc" default
+put 1 0 "def" default
+flush
+resize 3 5
+dump
+flush

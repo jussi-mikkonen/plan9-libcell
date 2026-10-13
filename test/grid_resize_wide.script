@@ -1,0 +1,5 @@
+size 1 4
+width 3042 16
+put 0 2 "あ" default
+resize 1 3
+cells 0

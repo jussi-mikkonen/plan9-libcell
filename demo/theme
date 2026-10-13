@@ -1,0 +1,4 @@
+# user overrides of the built-in theme loaded by cellopen; omitted styles keep built-in colours
+default fg=#e0e0e0 bg=#101040
+keyword fg=#ffaf00
+error fg=#ff0000 underline

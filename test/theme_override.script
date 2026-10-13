@@ -1,0 +1,4 @@
+@builtin
+@@
+keyword fg=#ffaf00
+todo fg=#ff00ff bg=#000000 underline

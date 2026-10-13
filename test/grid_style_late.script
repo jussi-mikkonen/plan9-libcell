@@ -1,0 +1,11 @@
+builtin
+size 1 4
+put 0 0 "ab" @7
+put 0 2 "cd" @8
+flush
+flush
+mix 1 5
+flush
+defstyle late #00ff00 #000000 -
+flush
+flush

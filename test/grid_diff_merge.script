@@ -1,0 +1,5 @@
+size 3 4
+flush
+put 0 1 "AB" default
+put 2 0 "C" default
+flush
